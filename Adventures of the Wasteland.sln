@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.705
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{8BC9CEB8-8B4A-11D0-8D11-00A0C91BC942}") = "Adventures of the Wasteland", "Adventures of the Wasteland\Adventures of the Wasteland.vcxproj", "{968939AA-7896-4E52-8B70-3B96E0B8CEE8}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x64 = Debug|x64
+		Debug|x86 = Debug|x86
+		Release|x64 = Release|x64
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Debug|x64.ActiveCfg = Debug|x64
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Debug|x64.Build.0 = Debug|x64
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Debug|x86.ActiveCfg = Debug|Win32
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Debug|x86.Build.0 = Debug|Win32
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Release|x64.ActiveCfg = Release|x64
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Release|x64.Build.0 = Release|x64
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Release|x86.ActiveCfg = Release|Win32
+		{968939AA-7896-4E52-8B70-3B96E0B8CEE8}.Release|x86.Build.0 = Release|Win32
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0E9674B6-9C06-4BAA-A64D-2A42C1518573}
+	EndGlobalSection
+EndGlobal
