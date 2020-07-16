@@ -1,9 +1,13 @@
 #include <iostream>
 
+#include "Game.h"
+
+
 int main()
 {
-	std::cout << "Hello World!\n";
+	Game g;
 
-	system("pause");
+	g.Execute();
+
 	return EXIT_SUCCESS;
 }
