@@ -1,13 +1,13 @@
 #include "Player.h"
 
-Player::Player
+Player::Player()
 {
 
 }
-
+/*
 void SetPlayerName()
 {
-    PlayerName = 
+    
 }
 void SetPlayerName(newName)
 {
@@ -25,3 +25,4 @@ void GetPlayerName();
 void GetPlayerHealth();
 void GetPlayerShield();
 void GetPlayerProgress();
+*/

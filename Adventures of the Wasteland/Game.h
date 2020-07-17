@@ -3,6 +3,8 @@
 #include <iostream>
 #include <string>
 
+#include "Engine.h"
+
 class Game
 {
 	public:
@@ -10,11 +12,12 @@ class Game
 		~Game();
 
 		void WelcomeScreen();
-		void Execute();
+		void Run();
 		void Quit();
 
 	private:
 		bool game_quit = false;
 		std::string inp;
+		Engine game_engine;
 };
 
