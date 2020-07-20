@@ -1,8 +1,5 @@
 #pragma once
 
-#include <iostream>
-#include <string>
-
 #include "Engine.h"
 
 class Game
@@ -13,11 +10,8 @@ class Game
 
 		void WelcomeScreen();
 		void Run();
-		void Quit();
-
-	private:
-		bool game_quit = false;
-		std::string inp;
+	
+private:
 		Engine game_engine;
 };
 

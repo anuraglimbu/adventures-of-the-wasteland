@@ -1,8 +1,9 @@
 #pragma once
-#include <iostream>
-#include <string>
 
-class Parser
+#include <algorithm>
+#include "Screen.h"
+
+class Parser : public Screen
 {
 	public:
 		Parser();
@@ -11,7 +12,10 @@ class Parser
 		void Read();
 		int Parse();
 
+		bool YesNo();
+
 	private:
 		std::string player_input;
+		std::string yes_no;
 };
 

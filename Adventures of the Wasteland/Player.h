@@ -17,7 +17,7 @@ class Player
 		/*
 		void SetPlayerName();
 		void SetPlayerHealth();
-		void SetPlayerShield();
+		void SetPlayerShield(); 
 		void SetPlayerProgress();
 		void GetPlayerName();
 		void GetPlayerHealth();

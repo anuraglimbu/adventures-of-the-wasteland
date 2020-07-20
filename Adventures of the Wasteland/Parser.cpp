@@ -2,13 +2,14 @@
 
 Parser::Parser()
 {
-	//std::cout << "Parser object created";
+
 }
 
 void Parser::Read()
 {
-	std::cout << "\n>>";
+	Write(">>");
 	std::cin >> player_input;
+	std::transform(player_input.begin(), player_input.end(), player_input.begin(), ::tolower);
 }
 
 int Parser::Parse()
@@ -18,11 +19,25 @@ int Parser::Parse()
 		return 0;
 	}
 
+	if (player_input == "")
+	{
+		return 5;
+	}
 	return 1;
-	
 }
 
-Parser::~Parser()
+bool Parser::YesNo()
 {
-
+	std::cin >> yes_no;
+	std::transform(yes_no.begin(), yes_no.end(), yes_no.begin(), ::tolower);
+	if (yes_no == "yes" || yes_no == "y")
+	{
+		return true;
+	}
+	else
+	{
+		return false;
+	}
 }
+
+Parser::~Parser(){}

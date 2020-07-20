@@ -1,10 +1,8 @@
 #pragma once
 
-#include <iostream>
-
 #include "Parser.h"
 
-class Engine
+class Engine 
 {
 	public:
 		Engine();
@@ -12,10 +10,11 @@ class Engine
 
 		bool Execute();
 		void Process();
+		void Quit();
 
 	private:
 		bool quit_game = false;
-		Parser input;
+		Parser parser;
 
 };
 

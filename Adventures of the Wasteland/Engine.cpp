@@ -7,7 +7,7 @@ Engine::Engine()
 
 bool Engine::Execute()
 {
-	if (this->quit_game == true)
+	if (this->quit_game)
 	{
 		return false;
 	}
@@ -19,28 +19,30 @@ bool Engine::Execute()
 
 void Engine::Process()
 {
-	input.Read();
-	switch (input.Parse())
+	parser.Read();
+	switch (parser.Parse())
 	{
 		case 0:
-			std::cout << "\nQuit called";
-			this->quit_game = true;
+			Quit();
 			break;
 
 		case 1:
-			std::cout << "\nJust a command";
-			break;
-
-		case 3:
-			std::cout << "Enter Pressed";
+			parser.Write("Just a command");
 			break;
 
 		default:
-			std::cout << "\nExcuse me, i dont get it";
+			parser.Write("Excuse me, i dont get it");
 	}
 }
 
-Engine::~Engine()
+void Engine::Quit()
 {
-
+	parser.Write("Do you really wish to quit the game?");
+	if (parser.YesNo())
+	{
+		this->quit_game = true;
+		parser.Write("closing the game");
+	}
 }
+
+Engine::~Engine(){}
