@@ -1,10 +1,5 @@
 #include "Parser.h"
 
-Parser::Parser()
-{
-
-}
-
 void Parser::Read()
 {
 	Write(">>");
@@ -39,5 +34,3 @@ bool Parser::YesNo()
 		return false;
 	}
 }
-
-Parser::~Parser(){}

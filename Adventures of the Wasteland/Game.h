@@ -6,8 +6,6 @@ class Game
 {
 	public:
 		Game();
-		~Game();
-
 		void WelcomeScreen();
 		void Run();
 	

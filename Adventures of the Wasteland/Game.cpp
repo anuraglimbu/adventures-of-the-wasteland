@@ -18,8 +18,3 @@ void Game::Run()
 		game_engine.Process();
 	}
 }
-
-Game::~Game()
-{
-
-}

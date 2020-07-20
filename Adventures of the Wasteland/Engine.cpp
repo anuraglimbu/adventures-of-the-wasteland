@@ -1,13 +1,8 @@
 #include "Engine.h"
 
-Engine::Engine()
-{
-	//std::cout << "Engine Object created";
-}
-
 bool Engine::Execute()
 {
-	if (this->quit_game)
+	if (gameState == GameState::quit_game)
 	{
 		return false;
 	}
@@ -40,9 +35,7 @@ void Engine::Quit()
 	parser.Write("Do you really wish to quit the game?");
 	if (parser.YesNo())
 	{
-		this->quit_game = true;
+		gameState = GameState::quit_game;
 		parser.Write("closing the game");
 	}
 }
-
-Engine::~Engine(){}

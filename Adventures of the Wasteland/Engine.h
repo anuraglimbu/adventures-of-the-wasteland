@@ -2,18 +2,23 @@
 
 #include "Parser.h"
 
+enum class GameState
+{
+	onboarding,
+	fighting,
+	shopping,
+	quit_game
+};
+
 class Engine 
 {
 	public:
-		Engine();
-		~Engine();
-
 		bool Execute();
 		void Process();
 		void Quit();
 
 	private:
-		bool quit_game = false;
+		GameState gameState = GameState::onboarding;
 		Parser parser;
 
 };

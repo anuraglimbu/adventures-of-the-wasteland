@@ -6,9 +6,6 @@
 class Parser : public Screen
 {
 	public:
-		Parser();
-		~Parser();
-
 		void Read();
 		int Parse();
 
