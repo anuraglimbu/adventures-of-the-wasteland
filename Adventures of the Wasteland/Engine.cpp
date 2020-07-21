@@ -22,7 +22,19 @@ void Engine::Process()
 			break;
 
 		case 1:
-			parser.Write("Just a command");
+			parser.Write("Go north command");
+			break;
+
+		case 2:
+			parser.Write("Go south command");
+			break;
+
+		case 3:
+			parser.Write("Go east command");
+			break;
+
+		case 4:
+			parser.Write("Go west command");
 			break;
 
 		default:

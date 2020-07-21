@@ -129,6 +129,9 @@
     <ClInclude Include="Player.h" />
     <ClInclude Include="Screen.h" />
   </ItemGroup>
+  <ItemGroup>
+    <Text Include="Parser-Engine command mappings.txt" />
+  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
