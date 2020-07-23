@@ -5,55 +5,54 @@ Player::Player()
 
 }
 
-
-
-void SetPlayerName(newName)
+void Player::SetPlayerName(std::string newName)
 {
     PlayerName = newName;
     return;
 }
 
-void SetPlayerHealth(newHealth)
+void Player::SetPlayerHealth(int newHealth)
 {
     PlayerHealth = newHealth;
     return;
 }
 
-void SetPlayerShield(newShield)
+void Player::SetPlayerShield(int newShield)
 {
     PlayerShield = newShield;
     return;
 }
 
-void SetPlayerProgress(newProgress)
+void Player::SetPlayerProgress(int newProgress)
 {
-    PlayerProgress.push_back(newProgress);
+    PlayerProgress.emplace_back(newProgress);
     return;
 }
 
-std::string GetPlayerName()
+std::string Player:: GetPlayerName()
 {
     return PlayerName;
 }
 
-int GetPlayerHealth();
+int Player::GetPlayerHealth()
 {
     return PlayerHealth;
 }
 
-int GetPlayerShield();
+int Player::GetPlayerShield()
 {
     return PlayerShield;
 }
 
-std::vector GetPlayerProgress();
+std::vector<std::string> Player::GetPlayerProgress()
 {
     return PlayerProgress;
 }
 
-bool TakeHit(damage)
+void Player::TakeHit(int damage)
 {
-    PlayerHealth -= TakeHit
+    PlayerHealth -= damage;
+    return;
 }
 
 Player::~Player()

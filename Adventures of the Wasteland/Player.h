@@ -6,18 +6,20 @@
 
 class Player
 {
-	private:
-		std::string PlayerName;
-		int PlayerHealth;
-		int PlayerShield;
-		//std::vector PlayerProgress;
+private:
+	std::string PlayerName;
+	int PlayerHealth;
+	int PlayerShield;
+	std::vector<std::string> PlayerProgress;
 
 public:
-	void SetPlayerName(newName);
-	void SetPlayerHealth(newHealth);
-	void SetPlayerShield(newShield);
-	void SetPlayerProgress(newProgress);
-	void GetPlayerName();
-	void GetPlayerHealth();
-	void GetPlayerShield();
-	void GetPlayerProgress();
+	void SetPlayerName(std::string newName);
+	void SetPlayerHealth(int newHealth);
+	void SetPlayerShield(int newShield);
+	void SetPlayerProgress(int newProgress);
+	std::string GetPlayerName();
+	int GetPlayerHealth();
+	int GetPlayerShield();
+	std::vector<std::string> GetPlayerProgress();
+	void TakeHit(int damage);
+};
