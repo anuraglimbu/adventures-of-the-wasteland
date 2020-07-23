@@ -1,14 +1,16 @@
+#pragma once
 
 #include <iostream>
 #include <string>
+#include <vector>
 
 class Player
 {
-private:
-	std::string PlayerName;
-	int PlayerHealth;
-	int PlayerShield;
-	std::vector PlayerProgress;
+	private:
+		std::string PlayerName;
+		int PlayerHealth;
+		int PlayerShield;
+		//std::vector PlayerProgress;
 
 public:
 	void SetPlayerName(newName);
@@ -19,4 +21,3 @@ public:
 	void GetPlayerHealth();
 	void GetPlayerShield();
 	void GetPlayerProgress();
-};

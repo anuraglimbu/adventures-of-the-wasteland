@@ -1,13 +1,11 @@
-#include <iostream>
-
 #include "Game.h"
 
 
 int main()
 {
-	Game g;
+	Game game;
 
-	g.Execute();
+	game.Run();
 
 	return EXIT_SUCCESS;
 }

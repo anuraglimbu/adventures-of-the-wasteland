@@ -1,20 +1,15 @@
 #pragma once
 
-#include <iostream>
-#include <string>
+#include "Engine.h"
 
 class Game
 {
 	public:
 		Game();
-		~Game();
-
 		void WelcomeScreen();
-		void Execute();
-		void Quit();
-
-	private:
-		bool game_quit = false;
-		std::string inp;
+		void Run();
+	
+private:
+		Engine game_engine;
 };
 
