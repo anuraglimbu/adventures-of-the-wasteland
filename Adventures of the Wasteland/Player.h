@@ -11,10 +11,10 @@ private:
 	std::vector PlayerProgress;
 
 public:
-	void SetPlayerName();
-	void SetPlayerHealth();
-	void SetPlayerShield();
-	void SetPlayerProgress();
+	void SetPlayerName(newName);
+	void SetPlayerHealth(newHealth);
+	void SetPlayerShield(newShield);
+	void SetPlayerProgress(newProgress);
 	void GetPlayerName();
 	void GetPlayerHealth();
 	void GetPlayerShield();

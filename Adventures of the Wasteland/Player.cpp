@@ -1,27 +1,61 @@
 #include "Player.h"
 
-Player::Player
+Player::Player()
 {
 
 }
 
-void SetPlayerName()
-{
-    PlayerName = 
-}
+
 void SetPlayerName(newName)
 {
-    PlayerName = newName
-    return
+    PlayerName = newName;
+    return;
 }
 
 void SetPlayerHealth(newHealth)
 {
-    PlayerHealth = newHealth
+    PlayerHealth = newHealth;
+    return;
 }
-void SetPlayerShield(newShield);
-void SetPlayerProgress(newShield);
-void GetPlayerName();
-void GetPlayerHealth();
-void GetPlayerShield();
-void GetPlayerProgress();
+
+void SetPlayerShield(newShield)
+{
+    PlayerShield = newShield;
+    return;
+}
+
+void SetPlayerProgress(newProgress)
+{
+    PlayerProgress.push_back(newProgress);
+    return;
+}
+
+std::string GetPlayerName()
+{
+    return PlayerName;
+}
+
+int GetPlayerHealth();
+{
+    return PlayerHealth;
+}
+
+int GetPlayerShield();
+{
+    return PlayerShield;
+}
+
+std::vector GetPlayerProgress();
+{
+    return PlayerProgress;
+}
+
+bool TakeHit(damage)
+{
+    PlayerHealth -= TakeHit
+}
+
+Player::~Player()
+{
+
+}
