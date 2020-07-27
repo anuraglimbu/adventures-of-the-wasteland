@@ -9,7 +9,7 @@ class Game
 		void WelcomeScreen();
 		void Run();
 	
-private:
+	private:
 		Engine game_engine;
 };
 

@@ -30,11 +30,15 @@ void Engine::Process()
 			break;
 
 		case 3:
-			parser.Write("Go east command");
+			parser.Write("Go east command") ;
 			break;
 
 		case 4:
 			parser.Write("Go west command");
+			break;
+
+		case 5:
+			parser.Write("Pickup item");
 			break;
 
 		default:
