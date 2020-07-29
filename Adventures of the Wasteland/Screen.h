@@ -7,5 +7,6 @@ class Screen
 {
 	public:
 		void Write(std::string text);
+		void showHelp();
 };
 

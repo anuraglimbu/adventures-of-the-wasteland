@@ -38,11 +38,29 @@ void Engine::Process()
 			break;
 
 		case 5:
-			parser.Write("Pickup item");
+			parser.showHelp();
 			break;
 
 		default:
 			parser.Write("Excuse me, i dont get it");
+	}
+}
+
+void Engine::onboardPlayer()
+{
+	while(true)
+	{
+		parser.ReadRaw();
+		parser.Write("You will be called by this name from now on, are you sure?(y/n)");
+		if(parser.YesNo())
+		{
+			player.SetPlayerName(parser.getInput());
+			std::cout << "Well nice to meet you, " << player.GetPlayerName() <<".";
+			parser.Write("You can ask for help by just typing 'help'");
+			gameState = GameState::playing;
+			break;
+		}
+		parser.Write("State your name:");
 	}
 }
 
@@ -52,6 +70,6 @@ void Engine::Quit()
 	if (parser.YesNo())
 	{
 		gameState = GameState::quit_game;
-		parser.Write("closing the game");
+		parser.Write("Closing the game");
 	}
 }

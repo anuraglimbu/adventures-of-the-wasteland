@@ -5,7 +5,6 @@
 class Game
 {
 	public:
-		Game();
 		void WelcomeScreen();
 		void Run();
 	

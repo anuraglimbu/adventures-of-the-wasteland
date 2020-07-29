@@ -1,20 +1,23 @@
 #include "Game.h"
 
-Game::Game()
-{
-	WelcomeScreen();
-}
-
 void Game::WelcomeScreen()
 {
-	std::cout << "Adventures of the Wasteland";
-	std::cout << "\nIntro stuff goes here";
+	std::cout << "Adventures of the Wasteland\n\n";
+	std::cout << "You wake up in an unfamiliar room. You look around and see a middle aged man who looks like a wizard. \n";
+	std::cout << "\"Oh! You're finally awake!\" exclaimed the wizard.\n\n";
+	std::cout << "\n\"Tell me your name stranger\" asks the wizard.";
 }
 
 void Game::Run()
 {
 	while(game_engine.Execute())
 	{
+		if (game_engine.gameState == GameState::onboarding)
+		{
+			WelcomeScreen();
+			game_engine.onboardPlayer();
+		}
+
 		game_engine.Process();
 	}
 }

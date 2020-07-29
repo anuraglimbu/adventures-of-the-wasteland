@@ -7,9 +7,11 @@ class Parser : public Screen
 {
 	public:
 		void Read();
+		void ReadRaw();
 		int Parse();
 
 		bool YesNo();
+		std::string getInput();
 
 	private:
 		std::string player_input;

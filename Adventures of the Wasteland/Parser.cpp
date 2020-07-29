@@ -7,6 +7,12 @@ void Parser::Read()
 	std::transform(player_input.begin(), player_input.end(), player_input.begin(), ::tolower);
 }
 
+void Parser::ReadRaw()
+{
+	Write(">>");
+	std::cin >> player_input;
+}
+
 int Parser::Parse()
 {
 	if (player_input == "quit" || player_input == "q") return 0;
@@ -18,6 +24,8 @@ int Parser::Parse()
 	if (player_input == "go east" || player_input == "east" || player_input == "go e" || player_input == "e") return 3;
 
 	if (player_input == "go west" || player_input == "west" || player_input == "go w" || player_input == "w") return 4;
+
+	if (player_input == "help" || player_input == "h") return 5;
 
 	return 999;
 }
@@ -34,4 +42,9 @@ bool Parser::YesNo()
 	{
 		return false;
 	}
+}
+
+std::string Parser::getInput()
+{
+	return player_input;
 }
