@@ -12,7 +12,7 @@ void Game::Run()
 {
 	while(game_engine.Execute())
 	{
-		if (game_engine.gameState == GameState::onboarding)
+		if (game_engine.gameState == GameStates::onboarding)
 		{
 			WelcomeScreen();
 			game_engine.onboardPlayer();

@@ -1,5 +1,11 @@
 #include "Player.h"
 
+Player::Player()
+{
+	SetPlayerHealth(50);
+	SetPlayerShield(0);
+}
+
 void Player::SetPlayerName(std::string newName)
 {
     PlayerName = newName;

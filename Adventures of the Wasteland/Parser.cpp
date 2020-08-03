@@ -21,11 +21,19 @@ int Parser::Parse()
 
 	if (player_input == "go south" || player_input == "south" || player_input == "go s" || player_input == "s") return 2;
 
-	if (player_input == "go east" || player_input == "east" || player_input == "go e" || player_input == "e") return 3;
+	if (player_input == "go west" || player_input == "west" || player_input == "go w" || player_input == "w") return 3;
 
-	if (player_input == "go west" || player_input == "west" || player_input == "go w" || player_input == "w") return 4;
+	if (player_input == "go east" || player_input == "east" || player_input == "go e" || player_input == "e") return 4;
 
-	if (player_input == "help" || player_input == "h") return 5;
+	if (player_input == "go north-west" || player_input == "north-west" || player_input == "go nw" || player_input == "nw") return 5;
+
+	if (player_input == "go north-east" || player_input == "north-east" || player_input == "go ne" || player_input == "ne") return 6;
+
+	if (player_input == "go south-west" || player_input == "south-west" || player_input == "go sw" || player_input == "sw") return 7;
+
+	if (player_input == "go south-east" || player_input == "south-east" || player_input == "go se" || player_input == "se") return 8;
+
+	if (player_input == "help" || player_input == "h") return 9;
 
 	return 999;
 }
