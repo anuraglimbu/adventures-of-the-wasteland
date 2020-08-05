@@ -13,6 +13,13 @@ void Parser::ReadRaw()
 	std::cin >> player_input;
 }
 
+void Parser::Choice()
+{
+	Write("Enter the corresponding number/choice");
+	Write(">>");
+	std::cin >> choice;
+}
+
 int Parser::Parse()
 {
 	if (player_input == "quit" || player_input == "q") return 0;
@@ -35,6 +42,12 @@ int Parser::Parse()
 
 	if (player_input == "help" || player_input == "h") return 9;
 
+	if (player_input == "inventory" || player_input == "inv") return 10;
+
+	if (player_input == "drop" || player_input == "dr") return 11;
+
+	if (player_input == "equip" || player_input == "eq") return 12;
+
 	return 999;
 }
 
@@ -52,7 +65,18 @@ bool Parser::YesNo()
 	}
 }
 
+void Parser::Pause()
+{
+	std::cout << "\nPress 'c' and enter to continue...";
+	std::cin >> enter;
+}
+
 std::string Parser::getInput()
 {
 	return player_input;
+}
+
+int Parser::getChoice()
+{
+	return choice;
 }

@@ -6,6 +6,7 @@
 
 enum class PlayerStates
 {
+	idle,
 	fighting,
 	shopping,
 	travelling
@@ -13,21 +14,29 @@ enum class PlayerStates
 
 class Player
 {
-	private:
-		std::string PlayerName;
-		int PlayerHealth;
-		int PlayerShield;
-		//std::vector<std::string> PlayerProgress;
-
 	public:
 		Player();
-		void SetPlayerName(std::string newName);
-		void SetPlayerHealth(int newHealth);
-		void SetPlayerShield(int newShield);
-		//void SetPlayerProgress(int newProgress);
-		std::string GetPlayerName();
-		int GetPlayerHealth();
-		int GetPlayerShield();
-		//std::vector<std::string> GetPlayerProgress();
-		void TakeHit(int damage);
+
+		void setPlayerName(std::string newName);
+		void setPlayerHealth(int newHealth);
+		void setPlayerArmour(int newArmour);
+		void setPlayerShield(int newShield);
+
+		std::string getPlayerName();
+		int getPlayerHealth();
+		int getPlayerArmour();
+		int getPlayerShield();
+
+		void takesDamage(int damage);
+		void armourTakesHit(int damage);
+		void shieldTakesHit(int damage);
+
+		bool isDead();
+
+	private:
+		std::string name;
+		int health;
+		int armour;
+		int shield;
+		
 };

@@ -1,14 +1,21 @@
 #pragma once
 
+#include <cstdlib>
+#include <time.h>
+
 #include "Parser.h"
 #include "Player.h"
+#include "Enemy.h"
+#include "Inventory.h"
 #include "Area.h"
+
 
 enum class GameStates
 {
 	onboarding,
 	playing,
-	quit_game
+	quit_game,
+	game_over
 };
 
 class Engine 
@@ -20,8 +27,12 @@ class Engine
 		bool Execute();
 		void Process();
 
+		int randomNum(int max); //function to return random number from 1 to specified number
+
 		void Quit();
 		void onboardPlayer();
+
+		void refreshPlayerStats();
 
 		//player movements
 		void moveNorth();
@@ -32,10 +43,34 @@ class Engine
 		void moveNorthEast();
 		void moveSouthWest();
 		void moveSouthEast();
+		
+		//inventory actions
+		void checkInventory();
+		void dropItem();
+		void equipItem();
+
+		//Fight functions
+		void randomEncounter(); //Fights when moving from one area to another
+		void initiateFight(); //initiate Fight function
+		void bossEncounter();
+		void fightStats(); //Display fight info on screen
+
+		inline void playerAttack();
+		inline void playerBlock();
+		inline bool usePotion(); // uses potion if available returns false if no potion available
+	
+		inline void enemyAttack();
+
+		int enemyDamage();//Return random damage given by enemy
 
 	private:
 		Parser parser;
 		Player player;
+
+		Enemy randomEnemy;
+		Enemy *currentEnemy;
+
+		Inventory inventory;
 
 		//Areas
 		Area dumpyard = Area(0);

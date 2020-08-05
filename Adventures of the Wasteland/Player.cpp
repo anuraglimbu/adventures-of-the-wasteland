@@ -2,51 +2,87 @@
 
 Player::Player()
 {
-	SetPlayerHealth(50);
-	SetPlayerShield(0);
+	setPlayerHealth(50);
+	setPlayerShield(0);
 }
 
-void Player::SetPlayerName(std::string newName)
+void Player::setPlayerName(std::string newName)
 {
-    PlayerName = newName;
+    name = newName;
 }
 
-void Player::SetPlayerHealth(int newHealth)
+void Player::setPlayerHealth(int newHealth)
 {
-    PlayerHealth = newHealth;
+    health = newHealth;
+	if (health > 50)
+	{
+		health = 50;
+	}
 }
 
-void Player::SetPlayerShield(int newShield)
+void Player::setPlayerArmour(int newArmour)
 {
-    PlayerShield = newShield;
+	armour = newArmour;
 }
 
-/*void Player::SetPlayerProgress(int newProgress)
+void Player::setPlayerShield(int newShield)
 {
-    PlayerProgress.emplace_back(newProgress);
-}*/
-
-std::string Player:: GetPlayerName()
-{
-    return PlayerName;
+    shield = newShield;
 }
 
-int Player::GetPlayerHealth()
+std::string Player:: getPlayerName()
 {
-    return PlayerHealth;
+    return name;
 }
 
-int Player::GetPlayerShield()
+int Player::getPlayerHealth()
 {
-    return PlayerShield;
+    return health;
 }
 
-/*std::vector<std::string> Player::GetPlayerProgress()
+int Player::getPlayerArmour()
 {
-    return PlayerProgress;
-}*/
+	return armour;
+}
 
-void Player::TakeHit(int damage)
+
+int Player::getPlayerShield()
 {
-    PlayerHealth -= damage;
+    return shield;
+}
+
+void Player::takesDamage(int damage)
+{
+	if (armour <= 0)
+	{
+		health -= damage;
+	}
+	else
+	{
+		armourTakesHit(damage);
+	}
+}
+
+void Player::armourTakesHit(int damage)
+{
+	armour -= damage;
+	if (this->armour < 0)
+	{
+		health += armour; //eg: if armour is 10 and enemy deals 20 damage, health will be reduced by remaining damage
+	}
+}
+
+void Player::shieldTakesHit(int damage)
+{
+	shield -= damage;
+	if (this->shield < 0)
+	{
+		armourTakesHit(-shield); //eg: if shield is 10 and enemy deals 20 damage, health will be reduced by remaining damage
+		shield = 0;
+	}
+}
+
+bool Player::isDead()
+{
+	return (this->health <= 0) ? true : false;
 }

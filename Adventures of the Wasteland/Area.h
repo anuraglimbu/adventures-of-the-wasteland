@@ -4,7 +4,7 @@
 #include <string>
 #include <vector>
 
-enum Areas
+enum class Areas
 {
 	dumpyard,
 	plain,
@@ -31,6 +31,8 @@ class Area
 		std::string name;
 		bool shop;
 		std::vector<int> shop_items;
+
+		bool bossDead = false;
 
 		//directions
 		bool north;
