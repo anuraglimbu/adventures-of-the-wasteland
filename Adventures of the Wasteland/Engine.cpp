@@ -4,6 +4,7 @@ Engine::Engine()
 {
 	//Loading the areas into vectors
 	currentArea = &dumpyard;
+	
 	Item tempItem = Item("The Sword of the dead", ItemTypes::sword, 20, 1200);
 	Item tempItem1 = Item("The Armour of the gods", ItemTypes::armour, 50, 1200);
 	Item tempItem2 = Item("The Shield of the mighty", ItemTypes::shield , 50, 1200);

@@ -10,10 +10,11 @@ Inventory::Inventory()
 
 void Inventory::add(Item item)
 {
-	EmptyLine();
 	if (isFull())
 	{
+		EmptyLine();
 		Write("Your inventory is full!");
+		EmptyLine();
 	}
 	else
 	{
@@ -27,7 +28,6 @@ void Inventory::add(Item item)
 			}
 		}
 	}
-	EmptyLine();
 }
 
 void Inventory::remove(int itemNum)
