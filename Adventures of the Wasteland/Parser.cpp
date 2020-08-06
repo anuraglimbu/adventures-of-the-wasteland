@@ -48,6 +48,10 @@ int Parser::Parse()
 
 	if (player_input == "equip" || player_input == "eq") return 12;
 
+	if (player_input == "heal") return 13;
+
+	if (player_input == "status" || player_input == "stats") return 14;
+
 	return 999;
 }
 

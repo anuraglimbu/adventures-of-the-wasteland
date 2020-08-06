@@ -20,10 +20,19 @@ bool Engine::Execute()
 	{
 		return false;
 	}
-	else
+	
+	if (gameState == GameStates::game_over)
 	{
-		return true;
+		parser.EmptyLine();
+		parser.DashedLine();
+		parser.Write("Game Over!!");
+		parser.DashedLine();
+		parser.EmptyLine();
+		parser.Pause();
+		return false;
 	}
+	
+	return true;
 }
 
 void Engine::Process()
@@ -36,42 +45,34 @@ void Engine::Process()
 			break;
 
 		case 1:
-			parser.Write("Go north command");
 			moveNorth();
 			break;
 
 		case 2:
-			parser.Write("Go south command");
 			moveSouth();
 			break;
 
 		case 3:
-			parser.Write("Go west command");
 			moveWest();
 			break;
 
 		case 4:
-			parser.Write("Go east command");
 			moveEast();
 			break;
 
 		case 5:
-			parser.Write("Go north-west command");
 			moveNorthWest();
 			break;
 
 		case 6:
-			parser.Write("Go north-east command");
 			moveNorthEast();
 			break;
 
 		case 7:
-			parser.Write("Go south-west command");
 			moveSouthWest();
 			break;
 
 		case 8:
-			parser.Write("Go south-east command");
 			moveSouthEast();
 			break;
 
@@ -89,6 +90,10 @@ void Engine::Process()
 
 		case 12:
 			equipItem();
+			break;
+
+		case 13:
+			usePotion();
 			break;
 
 		default:
@@ -148,12 +153,12 @@ void Engine::moveNorth()
 		{
 			case Areas::dumpyard:
 				currentArea = &valley;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 
 			case Areas::valley:
 				currentArea = &wasteland;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 		}
 	}
@@ -168,16 +173,17 @@ void Engine::moveSouth()
 	if (currentArea->checkDirection("s"))
 	{
 		randomEncounter();
+		
 		switch (currentArea->area)
 		{
 			case Areas::wasteland:
 				currentArea = &valley;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 
 			case Areas::valley:
 				currentArea = &dumpyard;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 		}
 	}
@@ -189,12 +195,40 @@ void Engine::moveSouth()
 
 void Engine::moveWest()
 {
-	parser.Write("There's only a dense forest in that direction! You can't go that way.");
+	if (currentArea->checkDirection("w"))
+	{
+		randomEncounter();
+		switch (currentArea->area)
+		{
+			case Areas::mountain:
+				currentArea = &plain;
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
+				break;
+		}
+	}
+	else
+	{
+		parser.Write("There's only a dense forest in that direction! You can't go that way.");
+	}
 }
 
 void Engine::moveEast()
 {		
-	parser.Write("There's only a dense forest in that direction! You can't go that way.");
+	if (currentArea->checkDirection("e"))
+	{
+		randomEncounter();
+		switch (currentArea->area)
+		{
+		case Areas::plain:
+			currentArea = &mountain;
+			if (gameState != GameStates::game_over) currentArea->welcomeMessage();
+			break;
+		}
+	}
+	else
+	{
+		parser.Write("There's only a dense forest in that direction! You can't go that way.");
+	}
 }
 
 void Engine::moveNorthWest()
@@ -206,12 +240,12 @@ void Engine::moveNorthWest()
 		{
 			case Areas::dumpyard:
 				currentArea = &plain;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 
 			case Areas::mountain:
 				currentArea = &valley;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 		}
 	}
@@ -230,12 +264,12 @@ void Engine::moveNorthEast()
 		{
 			case Areas::dumpyard:
 				currentArea = &mountain;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 
 			case Areas::plain:
 				currentArea = &valley;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 		}
 	}
@@ -254,12 +288,12 @@ void Engine::moveSouthWest()
 		{
 			case Areas::mountain:
 				currentArea = &dumpyard;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 
 			case Areas::valley:
 				currentArea = &plain;
-				currentArea->welcomeMessage();
+				if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 				break;
 		}
 	}
@@ -278,12 +312,12 @@ void Engine::moveSouthEast()
 		{
 		case Areas::plain:
 			currentArea = &dumpyard;
-			currentArea->welcomeMessage();
+			if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 			break;
 
 		case Areas::valley:
 			currentArea = &mountain;
-			currentArea->welcomeMessage();
+			if (gameState != GameStates::game_over) currentArea->welcomeMessage();
 			break;
 		}
 	}
@@ -325,6 +359,7 @@ void Engine::randomEncounter()
 		case 1:
 			parser.Write("You encountered a zombie horde on your way!");
 			randomEnemy.setType(enemyTypes::zombie);
+			randomEnemy.setCoins(50);
 			currentEnemy = &randomEnemy;
 			initiateFight();
 			break;
@@ -332,6 +367,7 @@ void Engine::randomEncounter()
 		case 2:
 			parser.Write("You encountered a skeleton army on your way!");
 			randomEnemy.setType(enemyTypes::skeleton);
+			randomEnemy.setCoins(100);
 			currentEnemy = &randomEnemy;
 			//std::cout << "\nInitiated fight with: " << currentEnemy->getName();
 			initiateFight();
@@ -410,17 +446,6 @@ void Engine::initiateFight()
 			parser.DashedLine();
 			parser.Pause();
 		}
-		parser.EmptyLine();
-		parser.DashedLine();
-
-		if (currentEnemy->isDead()) parser.Write("The enemy is dead!");
-		if (player.isDead()) 
-		{ 
-			parser.Write("You are dead!"); 
-			gameState = GameStates::game_over;
-		}
-
-		parser.DashedLine();
 	}
 	else
 	{
@@ -443,6 +468,28 @@ void Engine::initiateFight()
 				break;
 		}
 	}
+	parser.EmptyLine();
+	parser.DashedLine();
+
+	if (currentEnemy->isDead())
+	{
+		parser.Write("The enemy is dead!");
+		parser.EmptyLine();
+		std::cout << "You got " << currentEnemy->getCoins() << " coins from the enemy";
+
+		int amt;
+		amt = player.getCoins() + currentEnemy->getCoins();
+
+		player.setCoins(amt);
+	}
+
+	if (player.isDead())
+	{
+		parser.Write("You are dead!");
+		gameState = GameStates::game_over;
+	}
+
+	parser.DashedLine();
 }
 
 void Engine::fightStats()
@@ -455,8 +502,9 @@ void Engine::fightStats()
 	std::cout << "\n"<< player.getPlayerName() << "    \t\t\t" << currentEnemy->getName();
 	std::cout << "\nLife:    " << player.getPlayerHealth() << "\t\t\t Life:   " << currentEnemy->getLife();
 	std::cout << "\nPotions: " << inventory.getHealthPotionCount() << "\t\t\t Armour: " << currentEnemy->getArmour();
-	std::cout << "\nArmour:  " << player.getPlayerArmour();
+	std::cout << "\nArmour:  " << player.getPlayerArmour() << "\t\t\t Coins: " << currentEnemy->getCoins();
 	std::cout << "\nShield:  " << player.getPlayerShield();
+	std::cout << "\nCoins:   " << player.getCoins();
 	std::cout << "\nSword Damage: " << inventory.getItemDamage(10);//Get damage of equipped sword
 
 	parser.EmptyLine();
@@ -537,7 +585,6 @@ inline bool Engine::usePotion()
 			return false;
 		}
 	}
-	//parser.Pause();
 	return true;
 }
 
@@ -580,5 +627,3 @@ int Engine::enemyDamage()
 
 	return damage;
 }
-
-/// IMPLEMENT: game over if dead. coin system

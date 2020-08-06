@@ -30,6 +30,11 @@ void Player::setPlayerShield(int newShield)
     shield = newShield;
 }
 
+void Player::setCoins(int amt)
+{
+	coins = amt;
+}
+
 std::string Player:: getPlayerName()
 {
     return name;
@@ -49,6 +54,11 @@ int Player::getPlayerArmour()
 int Player::getPlayerShield()
 {
     return shield;
+}
+
+int Player::getCoins()
+{
+	return coins;
 }
 
 void Player::takesDamage(int damage)

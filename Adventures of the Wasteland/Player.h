@@ -21,11 +21,13 @@ class Player
 		void setPlayerHealth(int newHealth);
 		void setPlayerArmour(int newArmour);
 		void setPlayerShield(int newShield);
+		void setCoins(int amt);
 
 		std::string getPlayerName();
 		int getPlayerHealth();
 		int getPlayerArmour();
 		int getPlayerShield();
+		int getCoins();
 
 		void takesDamage(int damage);
 		void armourTakesHit(int damage);
@@ -39,4 +41,5 @@ class Player
 		int armour;
 		int shield;
 		
+		int coins = 0;
 };

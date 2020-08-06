@@ -10,10 +10,11 @@ Enemy::Enemy(enemyTypes _type)
 	setType(_type);
 }
 
-Enemy::Enemy(enemyTypes _type, std::string _name)
+Enemy::Enemy(enemyTypes _type, std::string _name, int _coins)
 {
 	setType(_type);
 	setName(_name);
+	setCoins(_coins);
 }
 
 void Enemy::setType(enemyTypes _type)
@@ -71,6 +72,11 @@ void Enemy::setName(std::string _name)
 	this->name = _name;
 }
 
+void Enemy::setCoins(int amt)
+{
+	this->coins = amt;
+}
+
 std::string Enemy::getName()
 {
 	return this->name;
@@ -94,6 +100,11 @@ int Enemy::getArmour()
 int Enemy::getMaxDamage()
 {
 	return this->maxDamage;
+}
+
+int Enemy::getCoins() 
+{
+	return this->coins;
 }
 
 void Enemy::takesDamage(int num)
