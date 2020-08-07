@@ -114,32 +114,6 @@
       <OptimizeReferences>true</OptimizeReferences>
     </Link>
   </ItemDefinitionGroup>
-  <ItemGroup>
-    <ClCompile Include="Area.cpp" />
-    <ClCompile Include="Enemy.cpp" />
-    <ClCompile Include="Engine.cpp" />
-    <ClCompile Include="Game.cpp" />
-    <ClCompile Include="Inventory.cpp" />
-    <ClCompile Include="Item.cpp" />
-    <ClCompile Include="main.cpp" />
-    <ClCompile Include="Parser.cpp" />
-    <ClCompile Include="Player.cpp" />
-    <ClCompile Include="Screen.cpp" />
-  </ItemGroup>
-  <ItemGroup>
-    <ClInclude Include="Area.h" />
-    <ClInclude Include="Enemy.h" />
-    <ClInclude Include="Engine.h" />
-    <ClInclude Include="Game.h" />
-    <ClInclude Include="Inventory.h" />
-    <ClInclude Include="Item.h" />
-    <ClInclude Include="Parser.h" />
-    <ClInclude Include="Player.h" />
-    <ClInclude Include="Screen.h" />
-  </ItemGroup>
-  <ItemGroup>
-    <Text Include="Parser-Engine command mappings.txt" />
-  </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
   </ImportGroup>
