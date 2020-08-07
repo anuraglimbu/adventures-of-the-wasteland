@@ -2,12 +2,25 @@
 
 Area::Area(int areaCode)
 {
+	Item tempItem0;
+	Item tempItem1;
+	Item tempItem2;
+
 	switch(areaCode)
 	{
 		case 0:
 			name = "The Dumpyard";
 			area = Areas::dumpyard;
+
 			shop = true;
+
+			tempItem0.setType("Steel Sword", ItemTypes::sword, 20, 100);
+			tempItem1.setType("Leather Armour", ItemTypes::armour, 30, 100);
+			tempItem2.setType("Wooden Shield", ItemTypes::shield, 20, 100);
+
+			shopItems.add(tempItem0);
+			shopItems.add(tempItem1);
+			shopItems.add(tempItem2);
 
 			north = true;
 			south = false;
@@ -25,7 +38,15 @@ Area::Area(int areaCode)
 		case 1:
 			name = "Plain of the Armoured Warriors";
 			area = Areas::plain;
+			
 			shop = true;
+			tempItem0.setType("Steel Sword", ItemTypes::sword, 20, 100);
+			tempItem1.setType("Leather Armour", ItemTypes::armour, 30, 100);
+			tempItem2.setType("Wooden Shield", ItemTypes::shield, 20, 100);
+
+			shopItems.add(tempItem0);
+			shopItems.add(tempItem1);
+			shopItems.add(tempItem2);
 
 			north = false;
 			south = false;
@@ -43,7 +64,15 @@ Area::Area(int areaCode)
 		case 2:
 			name = "Mountain of the Shieldmakers";
 			area = Areas::mountain;
+
 			shop = true;
+			tempItem0.setType("Iron Sword", ItemTypes::sword, 30, 200);
+			tempItem1.setType("Iron Armour", ItemTypes::armour, 50, 200);
+			tempItem2.setType("Iron Shield", ItemTypes::shield, 40, 200);
+
+			shopItems.add(tempItem0);
+			shopItems.add(tempItem1);
+			shopItems.add(tempItem2);
 
 			north = false;
 			south = false;
@@ -61,7 +90,15 @@ Area::Area(int areaCode)
 		case 3:
 			name = "Valley of the Swordsmen";
 			area = Areas::valley;
+
 			shop = true;
+			tempItem0.setType("Iron Sword", ItemTypes::sword, 30, 200);
+			tempItem1.setType("Iron Armour", ItemTypes::armour, 50, 200);
+			tempItem2.setType("Iron Shield", ItemTypes::shield, 40, 200);
+
+			shopItems.add(tempItem0);
+			shopItems.add(tempItem1);
+			shopItems.add(tempItem2);
 
 			north = true;
 			south = true;
@@ -94,6 +131,16 @@ Area::Area(int areaCode)
 			bossExists = true;
 
 			break;
+	}
+
+	Item tempItem[7];
+	parser.Write("Debug: NAme:");
+	std::cout << a.getName() << " Price:" << a.getPrice() << std::endl;
+	for (int i = 0; i < 7; i++)
+	{
+		tempItem[i].setType("Health Potion", ItemTypes::healthPotion, 20, 50);
+		
+		this->shopItems.add(tempItem[i]);
 	}
 }
 
@@ -138,6 +185,11 @@ bool Area::bossIsDead()
 bool Area::hasChief()
 {
 	return this->chiefExists;
+}
+
+bool Area::hasShop()
+{
+	return this->shop;
 }
 
 bool Area::checkDirection(std::string dir) //returns whether the direction of movement from this area is valid or not

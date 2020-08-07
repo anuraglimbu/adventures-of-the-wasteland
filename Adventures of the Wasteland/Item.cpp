@@ -37,7 +37,8 @@ void Item::setType(std::string name, ItemTypes type, int data, int price)
 	this->name = name;
 	this->type = type;
 	this->price = price;
-	
+	//std::cout<<("\nDebug: Item created: ");
+	//std::cout << "Name:" << this->name << " Price:" << this->price;
 	switch (type)
 	{
 		case ItemTypes::sword:
@@ -158,5 +159,5 @@ void Item::copy(Item item)
 			break;
 	}
 
-	setType(item.getName(), item.getType(), data, price);
+	setType(item.getName(), item.getType(), data, item.getPrice());
 }

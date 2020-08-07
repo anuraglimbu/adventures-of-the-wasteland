@@ -35,6 +35,8 @@ class Engine
 
 		void refreshPlayerStats();
 
+		void PlayerStats();
+
 		//player movements
 		void moveNorth();
 		void moveSouth();
@@ -66,6 +68,7 @@ class Engine
 
 		//Area actions
 		void visitAreaChief();
+		void visitAreaShop();
 
 	private:
 		Parser parser;

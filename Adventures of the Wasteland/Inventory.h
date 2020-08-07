@@ -15,6 +15,7 @@ class Inventory : public Screen
 		void equip(int itemNum);
 
 		void check();
+		void equipmentCheck();
 		void setItemCapacity(int itemNum, int cap);
 		
 		bool isFull();
@@ -26,6 +27,7 @@ class Inventory : public Screen
 		int getHealthPotionCount();
 
 		//accessing item data
+		Item getItem(int Pos);
 		int getItemCapacity(int itemPos);
 		int getItemDamage(int itemPos);
 		/*std::string getItemName();

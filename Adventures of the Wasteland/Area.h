@@ -28,6 +28,7 @@ class Area : public Screen
 		bool bossIsDead(); //check if the Area's boss is dead or not
 		bool alreadyVisitedChief(); //checks whether player has visited the chief before or not
 		bool hasChief();
+		bool hasShop();
 
 		void welcomeMessage();
 		

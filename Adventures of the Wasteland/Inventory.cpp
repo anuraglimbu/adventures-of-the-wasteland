@@ -23,6 +23,8 @@ void Inventory::add(Item item)
 			if (inventorySpace.at(i)->getType() == ItemTypes::none)
 			{
 				inventorySpace.at(i)->copy(item);
+				//std::cout << "Debug: Creating temporary item, ";
+				//std::cout << "Name: " << inventorySpace.at(i)->getName() << std::endl;
 				usedSpace++;
 				break;
 			}
@@ -41,7 +43,7 @@ void Inventory::remove(int itemNum)
 		}
 		else
 		{
-			std::cout << "Dropped " << inventorySpace.at(itemNum - 1)->getName();
+			//std::cout << "Dropped " << inventorySpace.at(itemNum - 1)->getName();
 			inventorySpace.at(itemNum - 1)->setType(ItemTypes::none);
 			usedSpace--;
 		}
@@ -109,6 +111,8 @@ void Inventory::check()
 	}
 	else
 	{
+		Write("\tItems \t\t Stats \t\t\t Price");
+		Write("\t===== \t\t ===== \t\t\t =====");
 		for (i = 0; i < 10; i++)
 		{
 			if (inventorySpace.at(i)->getType() == ItemTypes::none)
@@ -118,11 +122,26 @@ void Inventory::check()
 			else
 			{
 				std::cout << std::endl << i+1 << ". " << inventorySpace.at(i)->getName();
+				if (inventorySpace.at(i)->getType() == ItemTypes::sword)
+				{
+					std::cout << "\t\t Damage: " << inventorySpace.at(i)->getDamage();
+				}
+				else if (inventorySpace.at(i)->getType() == ItemTypes::shield || inventorySpace.at(i)->getType() == ItemTypes::armour)
+				{
+					std::cout << "\t Capacity: " << inventorySpace.at(i)->getCurrentCapacity() << "/" << inventorySpace.at(i)->getCapacity();
+				}
+				else
+				{
+					std::cout << "\t Heal:     " << inventorySpace.at(i)->getHeal();
+				}
+				std::cout << "\t\t " << inventorySpace.at(i)->getPrice();
 			}
 		}
 	}
+}
 
-	EmptyLine();
+void Inventory::equipmentCheck()
+{
 	Write("Equipment Stats: (Sword, Armour and Shield)");
 	EmptyLine();
 	if (inventorySpace.at(10)->getType() == ItemTypes::none && inventorySpace.at(11)->getType() == ItemTypes::none && inventorySpace.at(12)->getType() == ItemTypes::none)
@@ -131,7 +150,9 @@ void Inventory::check()
 	}
 	else
 	{
-		for (i = 10; i < 13; i++)
+		Write("\tItems \t\t Stats \t\t\t Price");
+		Write("\t===== \t\t ===== \t\t\t =====");
+		for (int i = 10; i < 13; i++)
 		{
 			if (inventorySpace.at(i)->getType() == ItemTypes::none)
 			{
@@ -140,6 +161,19 @@ void Inventory::check()
 			else
 			{
 				std::cout << std::endl << i + 1 << ". " << inventorySpace.at(i)->getName();
+				if (inventorySpace.at(i)->getType() == ItemTypes::sword)
+				{
+					std::cout << "\t\t Damage: " << inventorySpace.at(i)->getDamage();
+				}
+				else if (inventorySpace.at(i)->getType() == ItemTypes::shield || inventorySpace.at(i)->getType() == ItemTypes::armour)
+				{
+					std::cout << "\t Capacity: " << inventorySpace.at(i)->getCurrentCapacity() << "/" << inventorySpace.at(i)->getCapacity();
+				}
+				else
+				{
+					std::cout << "\t Heal:     " << inventorySpace.at(i)->getHeal();
+				}
+				std::cout << "\t\t " << inventorySpace.at(i)->getPrice();
 			}
 		}
 	}
@@ -202,4 +236,9 @@ int Inventory::getItemCapacity(int itemPos)
 int Inventory::getItemDamage(int itemPos)
 {
 	return this->inventorySpace.at(itemPos)->getDamage();
+}
+
+Item Inventory::getItem(int Pos)
+{
+	return inventorySpace.at(Pos - 1)->getDuplicateObject();
 }

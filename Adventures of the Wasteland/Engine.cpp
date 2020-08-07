@@ -5,6 +5,7 @@ Engine::Engine()
 	//Loading the areas into vectors
 	currentArea = &dumpyard;
 	
+	/*
 	Item tempItem = Item("The Sword of the dead", ItemTypes::sword, 20, 1200);
 	Item tempItem1 = Item("The Armour of the gods", ItemTypes::armour, 50, 1200);
 	Item tempItem2 = Item("The Shield of the mighty", ItemTypes::shield , 50, 1200);
@@ -12,7 +13,7 @@ Engine::Engine()
 	inventory.add(tempItem);
 	inventory.add(tempItem1);
 	inventory.add(tempItem2);
-	inventory.add(tempItem3);
+	inventory.add(tempItem3);*/
 }
 
 bool Engine::Execute()
@@ -97,12 +98,20 @@ void Engine::Process()
 			usePotion();
 			break;
 
+		case 14:
+			PlayerStats();
+			break;
+
 		case 15:
 			bossEncounter();
 			break;
 
 		case 16:
 			visitAreaChief();
+			break;
+
+		case 17:
+			visitAreaShop();
 			break;
 
 		default:
@@ -138,12 +147,17 @@ void Engine::onboardPlayer()
 		{
 			player.setPlayerName(parser.getInput());
 			std::cout << "Well nice to meet you, " << player.getPlayerName() <<".";
-			parser.Write("You can ask for help by just typing 'help'");
 			gameState = GameStates::playing;
 			break;
 		}
 		parser.Write("State your name:");
 	}
+
+	parser.Write("I have given you 1000 coins! Visit the shop, buy swords and quip them");
+	player.setCoins(1000);
+
+
+	parser.Write("You can ask for help by just typing 'help'");
 }
 
 void Engine::refreshPlayerStats()
@@ -343,6 +357,7 @@ void Engine::checkInventory()
 	std::cout << "\n\nTotal Inventory Space: " << inventory.totalCapacity();
 	std::cout << "\tLeft Inventory Space: " << inventory.totalCapacity()-inventory.used();
 	inventory.check();
+	inventory.equipmentCheck();
 }
 
 void Engine::dropItem()
@@ -736,4 +751,89 @@ void Engine::visitAreaChief()
 	{
 		parser.Write("There's no chief of this area!");
 	}
+}
+
+void Engine::visitAreaShop()
+{
+	if (currentArea->hasShop())
+	{
+		parser.DashedLine();
+		parser.Write("\t\t\tShop");
+		parser.DashedLine();
+
+		
+
+		parser.EmptyLine();
+		currentArea->shopItems.check();
+		parser.EmptyLine();
+
+		std::cout << "Player Coins: " << player.getCoins();
+
+		parser.EmptyLine();
+		parser.Write("Choose the Item You Want to Buy:");
+		parser.Write(" (Choose 0 to exit shop)");
+		parser.Choice();
+		if (!inventory.isFull())
+		{
+			int choice = parser.getChoice();
+
+			if (choice <= 0)
+			{
+				parser.EmptyLine();
+				parser.Write("Exiting Shop without buying anything.");
+				parser.EmptyLine();
+			}
+			else if (choice <= 10)
+			{
+				Item a;
+				a.copy(currentArea->shopItems.getItem(choice));
+				if (player.getCoins() >= a.getPrice())
+				{
+					inventory.add(a);
+					currentArea->shopItems.remove(choice);
+					parser.DashedLine();
+					parser.Write("Bought ");
+					std::cout << a.getName();
+					parser.DashedLine();
+
+					player.setCoins(player.getCoins() - a.getPrice());
+				}
+				else
+				{
+					parser.Write("\nYou Don't Have Enough Money!!\n");
+				}
+			}
+			else
+			{
+				parser.Write("Invalid Choice");
+			}
+		}
+		else
+		{
+			parser.Write("Free up your inventory first!");
+		}
+
+	}
+	else
+	{
+		parser.Write("This area doesn't have a shop");
+	}
+}
+
+void Engine::PlayerStats()
+{
+	refreshPlayerStats();
+	parser.DashedLine();
+	parser.Write("\t\tPlayer Stats");
+	parser.DashedLine();
+	
+	parser.EmptyLine();
+	std::cout << "Name:         " << player.getPlayerName() << std::endl;
+	std::cout << "Life:         " << player.getPlayerHealth() << std::endl;
+	std::cout << "Coins:        " << player.getCoins() << std::endl;
+
+	std::cout << "Armour:       " << player.getPlayerArmour() << std::endl;
+	std::cout << "Shield:       " << player.getPlayerShield() << std::endl;
+	std::cout << "Sword Damage: " << inventory.getItemDamage(10) << std::endl;
+	std::cout << "Potions:      " << inventory.getHealthPotionCount() << std::endl;
 }
