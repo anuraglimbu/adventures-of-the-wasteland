@@ -18,6 +18,8 @@ Area::Area(int areaCode)
 			south_west = false;
 			south_east = false;
 
+			chiefExists = false;
+
 			break;
 
 		case 1:
@@ -33,6 +35,8 @@ Area::Area(int areaCode)
 			north_east = true;
 			south_west = false;
 			south_east = true;
+
+			chiefExists = true;
 			
 			break;
 
@@ -50,6 +54,8 @@ Area::Area(int areaCode)
 			south_west = true;
 			south_east = false;
 
+			chiefExists = true;
+
 			break;
 		
 		case 3:
@@ -65,6 +71,8 @@ Area::Area(int areaCode)
 			north_east = false;
 			south_west = true;
 			south_east = true;
+
+			chiefExists = true;
 
 			break;
 
@@ -82,8 +90,21 @@ Area::Area(int areaCode)
 			south_west = false;
 			south_east = false;
 
+			chiefExists = false;
+			bossExists = true;
+
 			break;
 	}
+}
+
+void Area::bossDied() 
+{
+	this->bossDead = true;
+}
+
+void Area::playerVisitsChief()
+{
+	this->chiefVisited = true;
 }
 
 std::string Area::getName()
@@ -93,7 +114,30 @@ std::string Area::getName()
 
 void Area::welcomeMessage()
 {
-	std::cout << "Welcome to " << name <<std::endl;
+	EmptyLine();
+	DashedLine();
+	std::cout << "\n\t  Welcome to " << name;
+	DashedLine();
+}
+
+bool Area::alreadyVisitedChief()
+{
+	return this->chiefVisited;
+}
+
+bool Area::hasBoss()
+{
+	return this->bossExists;
+}
+
+bool Area::bossIsDead()
+{
+	return this->bossDead;
+}
+
+bool Area::hasChief()
+{
+	return this->chiefExists;
 }
 
 bool Area::checkDirection(std::string dir) //returns whether the direction of movement from this area is valid or not

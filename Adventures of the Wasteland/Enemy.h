@@ -39,5 +39,5 @@ class Enemy
 		int maxDamage;
 		int life;
 		int armour;
-		int coins;
+		int coins = 0;
 };

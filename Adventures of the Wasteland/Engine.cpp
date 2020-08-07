@@ -97,6 +97,14 @@ void Engine::Process()
 			usePotion();
 			break;
 
+		case 15:
+			bossEncounter();
+			break;
+
+		case 16:
+			visitAreaChief();
+			break;
+
 		default:
 			parser.Write("Excuse me, i dont get it");
 	}
@@ -383,7 +391,35 @@ void Engine::randomEncounter()
 
 void Engine::bossEncounter()
 {
-	initiateFight();
+	if (currentArea->hasBoss())
+	{
+		if (!currentArea->bossIsDead())
+		{
+			parser.Write("You encounter the might Thanos!\n");
+			randomEnemy.setType(enemyTypes::boss);
+			randomEnemy.setCoins(0);
+			currentEnemy = &randomEnemy;
+			initiateFight();
+			if (currentEnemy->isDead())
+			{
+				currentArea->bossDied();
+				if (currentArea->area == Areas::wasteland)
+				{
+					gameState = GameStates::game_won;
+					parser.Write("Game Won");
+				}
+			}
+		}
+		else
+		{
+			parser.Write("\nYou've already killed the booss of this area!\n");
+		}
+	}
+	else
+	{
+		parser.Write("\nThere's no boss in this area.\n");
+	}
+	
 }
 
 void Engine::initiateFight()
@@ -627,4 +663,77 @@ int Engine::enemyDamage()
 	}
 
 	return damage;
+}
+
+void Engine::visitAreaChief()
+{
+	if (currentArea->hasChief())
+	{
+		if (!currentArea->alreadyVisitedChief())
+		{
+			parser.DashedLine();
+			parser.Write("\t\t\tVillage Chief:");
+			parser.DashedLine();
+			parser.EmptyLine();
+			parser.Write("Hello Traveller!");
+			parser.Write("So you're the one who is destined to finish Thanos, the prophecy will be fulfilled.");
+
+
+			Item tempItem;
+			switch (currentArea->area)
+			{
+				case Areas::plain:
+					parser.EmptyLine();
+					parser.Write("I suggest that you obtain the Legendary Shield which is East from here and the Legendary sword which lies to the North-East from here.");
+					parser.EmptyLine();
+					parser.Write("I would like to give you this Ledendary Armour worn by the White Knight!");
+					parser.Write("This will help you take hits of the Thanos safely.");
+					tempItem.setType("Armour of White Knight", ItemTypes::armour, 100, 10000);
+									  
+					break;
+
+				case Areas::mountain:
+					parser.EmptyLine();
+					parser.Write("I suggest that you obtain the Legendary Armour which is West from here and the Legendary sword which lies to the North-West from here.");
+					parser.EmptyLine();
+					parser.Write("I would like to give you this Ledendary Shield known as Shield of Heavenly Spirits!");
+					parser.Write("It is said that the spirit of our fallen ancestors provide protection to the shield holder...");
+					parser.Write("This will help you block hits from the Thanos.");
+					tempItem.setType("Shield of Heavenly Spirits", ItemTypes::shield, 100, 10000);
+					break;
+
+				case Areas::valley:
+					parser.EmptyLine();
+					parser.Write("I suggest that you obtain the Legendary Shield which is South-East from here and the Legendary shield which lies to the South-east");
+					parser.Write("But if you have them already, proceed to the north from here to get to Thanos!");
+					parser.EmptyLine();
+					parser.Write("I would like to give you this Ledendary Sword known as the Sword of Azeroth!");
+					parser.Write("This will help you block hits from the Thanos.");
+					tempItem.setType("Sword of Mighty Azeroth", ItemTypes::sword, 50, 10000);
+					break;
+
+				default:
+					break;
+			}
+			
+			if(inventory.isFull())
+			{
+				parser.Write("Seems like your inventory is full traveler.");
+				parser.Write("Please sacrifice an item and recieve my offering!");
+				dropItem();
+			}
+
+			inventory.add(tempItem);
+			currentArea->playerVisitsChief();
+			parser.Write("Please go to your inventory and equip it afterwards.");
+		}
+		else
+		{
+			parser.Write("You have already visited the chief of this area!");
+		}
+	}
+	else
+	{
+		parser.Write("There's no chief of this area!");
+	}
 }

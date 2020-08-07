@@ -6,7 +6,7 @@
 #include "Parser.h"
 #include "Player.h"
 #include "Enemy.h"
-#include "Inventory.h"
+//#include "Inventory.h"
 #include "Area.h"
 
 
@@ -15,7 +15,8 @@ enum class GameStates
 	onboarding,
 	playing,
 	quit_game,
-	game_over
+	game_over,
+	game_won
 };
 
 class Engine 
@@ -62,6 +63,9 @@ class Engine
 		inline void enemyAttack();
 
 		int enemyDamage();//Return random damage given by enemy
+
+		//Area actions
+		void visitAreaChief();
 
 	private:
 		Parser parser;

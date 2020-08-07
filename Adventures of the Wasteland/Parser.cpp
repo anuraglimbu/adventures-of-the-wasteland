@@ -55,6 +55,12 @@ int Parser::Parse()
 
 	if (player_input == "status" || player_input == "stats") return 14;
 
+	if (player_input == "fight boss" || player_input == "fb") return 15;
+	
+	if (player_input == "visit chief" || player_input == "vc") return 16;
+	
+	if (player_input == "visit shop" || player_input == "vs") return 17;
+
 	return 999;
 }
 

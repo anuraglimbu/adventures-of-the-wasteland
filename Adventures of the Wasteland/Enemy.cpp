@@ -39,8 +39,8 @@ void Enemy::setType(enemyTypes _type)
 		case enemyTypes::zombie:
 			this->name = "Zombie Horde";
 			this->life = 50;
-			this->armour = 50;
-			this->maxDamage = 20;
+			this->armour = 0;
+			this->maxDamage = 10;
 			break;
 
 		case enemyTypes::miniBoss:
@@ -51,10 +51,10 @@ void Enemy::setType(enemyTypes _type)
 			break;
 
 		case enemyTypes::boss:
-			this->name = "Unnamed Boss";
-			this->life = 100;
-			this->armour = 100;
-			this->maxDamage = 20;
+			this->name = "Thanos";
+			this->life = 10;
+			this->armour = 0;
+			this->maxDamage = 40;
 			break;
 
 		default:
@@ -64,7 +64,6 @@ void Enemy::setType(enemyTypes _type)
 			this->maxDamage = 0;
 			break;
 	}
-
 }
 
 void Enemy::setName(std::string _name)
