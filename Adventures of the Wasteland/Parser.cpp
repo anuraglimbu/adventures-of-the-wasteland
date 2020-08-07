@@ -3,20 +3,23 @@
 void Parser::Read()
 {
 	Write(">>");
- 	std::cin >> player_input;
+	std::cin >> std::ws; //ignore buffers such as whitespace or newline before string https://www.geeksforgeeks.org/clearing-the-input-buffer-in-cc/
+	std::getline(std::cin, player_input);
 	std::transform(player_input.begin(), player_input.end(), player_input.begin(), ::tolower);
 }
 
 void Parser::ReadRaw()
 {
-	Write(">>");
-	std::cin >> player_input;
+	Write(">>");	
+	std::cin >> std::ws; //flushing the input buffer help taken from https://www.geeksforgeeks.org/clearing-the-input-buffer-in-cc/
+	std::getline(std::cin, player_input);
 }
 
 void Parser::Choice()
 {
 	Write("Enter the corresponding number/choice");
 	Write(">>");
+	std::cin >> std::ws;
 	std::cin >> choice;
 }
 
@@ -71,8 +74,10 @@ bool Parser::YesNo()
 
 void Parser::Pause()
 {
+	char c;
 	std::cout << "\nPress 'c' and enter to continue...";
-	std::cin >> enter;
+	std::cin >> std::ws;
+	std::cin >> c;
 }
 
 std::string Parser::getInput()

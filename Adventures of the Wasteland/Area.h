@@ -43,5 +43,7 @@ class Area
 		bool north_east;
 		bool south_west;
 		bool south_east;
+
+		//indicators for player gameplay
 };
 

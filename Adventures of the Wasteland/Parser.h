@@ -23,7 +23,7 @@ class Parser : public Screen
 
 	private:
 		std::string player_input;
-		std::string enter;
+		
 		std::string yes_no;
 		int choice;
 };
