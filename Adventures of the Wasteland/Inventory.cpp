@@ -127,7 +127,7 @@ void Inventory::check()
 	EmptyLine();
 	if (inventorySpace.at(10)->getType() == ItemTypes::none && inventorySpace.at(11)->getType() == ItemTypes::none && inventorySpace.at(12)->getType() == ItemTypes::none)
 	{
-		Write("You don't have anything equipped!");
+		Write("You don't have anything equipped! Type 'equip' if you wish to equip something");
 	}
 	else
 	{
