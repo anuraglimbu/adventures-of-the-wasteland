@@ -17,5 +17,5 @@ void Screen::DashedLine()
 
 void Screen::showHelp()
 {
-	std::cout << "Help Text";
+	std::cout << "Type 'inventory' or 'inv' to access your inventory \n Type north to go north \n Type south to go south";
 }
